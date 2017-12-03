@@ -1,0 +1,61 @@
+body{
+    background-color: #816bcf;
+}
+.wrap{
+    width: 600px;
+    background-color: #fff;
+    padding-bottom: 20px;
+    margin: 50px auto;
+}
+.selbox{
+    height: 30px;
+    padding: 10px 10px 0 10px;
+    background-color: #ccc;
+    padding-left: 20px;
+}
+.selbox span{
+    float: left;
+}
+.sel{
+    width: 80%;
+    padding: 0px 10px 0 10px;
+    float: left;
+}
+dl{
+    overflow: hidden;
+}
+dt{
+    float: left;
+    padding-left: 20px;
+    color: #85878b;
+}
+dd{
+    float: left;
+    cursor: pointer;
+}
+.sel span{
+    height: 0px;
+    line-height: 0px;
+    padding: 10px 30px 10px 10px;
+    display: inline-block;
+    border: 1px solid red;
+    color: red;
+    position: relative;
+    text-align: center;
+    margin-right: 20px;
+}
+.sel span em{
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 0;
+    height: 20px;
+    line-height: 20px;
+    width: 20px;
+    background-color: red;
+    color: #fff;
+    cursor: pointer;
+}
+.active{
+    color: red;
+}
