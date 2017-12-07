@@ -1,0 +1,46 @@
+组件生命周期
+
+
+1、实例化
+
+类创建完成之后，就可以进行实例化。
+实例化一个类，由如下过程组成：
+
+getInitialState: 获取 this.state 的默认值
+componentWillMount: 在render之前调用此方法，在render之前需要做的事情就在这里处理
+render: 渲染并返回一个虚拟DOM
+componentDidMount: 在render之后，react会使用render返回的虚拟DOM来创建真实DOM，完成之后调用此方法。
+
+其中有几个点需要注意：
+
+1，this.state 只存储原始数据，不要存储计算后的数据
+比如 this.state.time = 1433245642536，那么就不要再存一个 this.state.timeString = ‘2015-06-02 19:47:22’ 因为这个是由 time 计算出来的，其实他不是一种state，他只是 this.state.time 的一种展示方式而已。
+这个应该放在render中计算出来：
+<span>time: {this.formatTime(this.state.time)}</span>
+
+2，componentWillMount 用来处理render之前的逻辑，不要在render中处理业务逻辑。
+render就是一个模板的作用，他只处理和展示相关的逻辑，比如格式化时间这样的，如果有业务逻辑，那么要放在 componentWillMount 中执行。
+所以render中一定不会出现改变 state 之类的操作。
+
+3，render返回的是虚拟DOM
+所谓虚拟DOM，其实就是 React.DOM.div 之类的实例，他就是一个JS对象。render方法完成之后，真实的DOM并不存在。
+
+4，componentDidMount 中处理和真实DOM相关的逻辑
+这时候真实的DOM已经渲染出来，可以通过 this.getDOMNode() 方法来使用了。典型的场景就是可以在这里调用jquery插件。
+
+
+2、 更新
+
+
+当组件实例化完成，就进入了存在期，这时候一般会响应用户操作和父组件的更新来更新视图。
+
+componentWillRecieveProps:   父组件或者通过组件的实例调用 setProps 改变当前组件的 props 时调用。
+shouldComponentUpdate: 是否需要更新，慎用
+componentWillUpdate: 调用 render方之前
+render: 
+componentDidUpdate: 真实DOM已经完成更新。
+
+
+3、销毁
+
+componentWillUnmount
